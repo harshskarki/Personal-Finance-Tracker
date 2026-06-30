@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+</head>
+
+<body>
+    <button id="theme-toggle" class="theme-toggle">
+    🌙
+</button>
+
+    <main class="dashboard-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <h1>💰 Finance Tracker</h1>
+            <p>Track income, expenses, and savings efficiently</p>
+        </header>
+
+        <!-- Balance Section -->
+        <section class="balance-card">
+            <h2>Available Balance</h2>
+            <div id="total-balance" class="balance-amount">$0.00</div>
+        </section>
+
+        <!-- Summary Cards -->
+        <section class="summary-cards">
+
+            <div class="summary-card income-card">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <div>
+                    <h4>Total Income</h4>
+                    <p id="income">$0.00</p>
+                </div>
+            </div>
+
+            <div class="summary-card expense-card">
+                <i class="fa-solid fa-arrow-trend-down"></i>
+                <div>
+                    <h4>Total Expenses</h4>
+                    <p id="expense">$0.00</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Transaction Form -->
+        <section class="form-section">
+
+            <h3>Add Transaction</h3>
+
+            <form id="transaction-form">
+
+                <input
+                    type="text"
+                    id="desc"
+                    placeholder="Description"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    step="0.01"
+                    required
+                >
+
+                <select id="type">
+                    <option value="income">Income (+)</option>
+                    <option value="expense">Expense (-)</option>
+                </select>
+
+                <button type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Transaction
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Search & Filter -->
+        <section class="controls-section">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="🔍 Search transactions..."
+            >
+
+            <select id="filter">
+                <option value="all">All Transactions</option>
+                <option value="income">Income</option>
+                <option value="expense">Expenses</option>
+            </select>
+
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-section">
+
+            <div class="stat-box">
+                <h4>Total Transactions</h4>
+                <p id="total-transactions">0</p>
+            </div>
+
+            <div class="stat-box">
+                <h4>Largest Expense</h4>
+                <p id="largest-expense">$0</p>
+            </div>
+
+        </section>
+
+        <!-- Transaction History -->
+        <section class="ledger-section">
+
+            <div class="history-header">
+                <h3>Transaction History</h3>
+
+                <button id="clear-all" class="danger-btn">
+                    Clear All
+                </button>
+            </div>
+
+            <ul id="transaction-list" class="list-container">
+
+                <li class="empty-state">
+                    No transactions added yet.
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
