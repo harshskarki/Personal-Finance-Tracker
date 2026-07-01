@@ -94,6 +94,14 @@ function calculateStats() {
 
   const balance = income - expense;
 
+  const savings =
+Math.max(balance, 0);
+
+  const savingsRate =
+  income > 0
+  ? ((savings / income) * 100).toFixed(1)
+  : 0;
+
   const largestExpense = transactions
     .filter(t => t.type === "expense")
     .reduce(
@@ -115,6 +123,12 @@ function calculateStats() {
 
   largestExpenseDisplay.textContent =
     `$${largestExpense.toFixed(2)}`;
+
+  document.getElementById("savings").textContent =
+  `$${savings.toFixed(2)}`;
+
+  document.getElementById("savings-rate").textContent =
+  `${savingsRate}%`;
 }
 
 // ==========================
@@ -160,10 +174,17 @@ function renderTransactions() {
   if (filteredTransactions.length === 0) {
 
     list.innerHTML = `
-      <li class="empty-state">
-        No transactions found.
-      </li>
-    `;
+  <li class="empty-state">
+
+      <h3>📭 No Transactions</h3>
+
+      <p>
+          Add your first income or expense
+          to get started.
+      </p>
+
+  </li>
+`;
 
     return;
   }
@@ -272,7 +293,14 @@ form.addEventListener("submit", e => {
     type,
 
     date: new Date()
-      .toLocaleDateString()
+  .toLocaleDateString(
+    "en-US",
+    {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    }
+  )
 
   };
 
@@ -352,3 +380,9 @@ themeToggle.addEventListener("click", () => {
   }
 
 });
+
+// ==========================
+// Initial Load
+// ==========================
+
+updateDashboard();
